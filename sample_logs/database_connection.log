@@ -1,0 +1,17 @@
+2026-11-18 11:00:00 INFO  ReportGenerator - Starting scheduled hourly inventory ledger reconciliation
+2026-11-18 11:02:15 INFO  InventoryService - Cache warm-up completed: 4500 SKUs indexed
+2026-11-18 11:05:10 WARN  DatabaseService - Slow query detected on 'warehouse_stock' table: 4820ms (threshold: 2000ms)
+2026-11-18 11:07:30 WARN  DatabaseService - Read replica rds-read-02.internal is lagging primary by 42 seconds
+2026-11-18 11:08:33 ERROR DatabaseService - Connection dropped during read replica failover [db_host: rds-read-02.internal]
+2026-11-18 11:09:00 ERROR DatabaseService - Failed to establish connection to replica: Connection refused (port 5432)
+2026-11-18 11:11:45 WARN  DatabaseService - Retrying read replica connection: attempt 1 of 3
+2026-11-18 11:13:12 ERROR DatabaseService - Failed to establish connection to replica: Connection refused (port 5432)
+2026-11-18 11:15:30 ERROR DatabaseService - Read replica pool marked UNHEALTHY. Rerouting queries to primary
+2026-11-18 11:18:22 WARN  DatabaseService - Primary DB CPU utilization at 88% — elevated load after replica fallback
+2026-11-18 11:21:40 ERROR DatabaseService - Query failed on primary DB: SocketTimeoutException waiting for response
+2026-11-18 11:24:15 ERROR DatabaseService - Deadlock detected on table 'stock_allocation': Process 14022 killed
+2026-11-18 11:26:50 ERROR DatabaseService - Connection dropped: Connection reset by peer [db_host: rds-primary.internal]
+2026-11-18 11:28:10 WARN  DatabaseService - Reconnecting to primary DB: attempt 1 of 5
+2026-11-18 11:30:05 ERROR DatabaseService - Failed to query inventory status for SKU-90412: DB connection timeout
+2026-11-18 11:32:40 ERROR DatabaseService - Query failed on primary DB: SocketTimeoutException waiting for response
+2026-11-18 11:35:12 ERROR DatabaseService - Connection dropped: Broken pipe during write transaction

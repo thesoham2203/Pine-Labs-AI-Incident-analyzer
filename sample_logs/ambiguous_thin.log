@@ -1,0 +1,10 @@
+2026-11-18 15:00:00 WARN  CheckoutService - Request processing time elevated: 2800ms (threshold: 2000ms)
+2026-11-18 15:00:02 INFO  CheckoutService - Request completed successfully
+2026-11-18 15:01:30 DEBUG CheckoutService - Cache miss for session token; re-fetching from origin
+2026-11-18 15:02:00 INFO  OrderProcessor - Job started: reconciliation run for the last 15 minutes
+2026-11-18 15:02:45 WARN  OrderProcessor - Reconciliation latency slightly elevated: 1200ms vs expected 800ms
+2026-11-18 15:04:00 INFO  OrderProcessor - Reconciliation job completed normally
+2026-11-18 15:06:00 DEBUG AuthService - Background token cleanup ran: 12 expired sessions removed
+2026-11-18 15:08:00 WARN  CheckoutService - Request processing time elevated: 2500ms (threshold: 2000ms)
+2026-11-18 15:08:03 INFO  CheckoutService - Request completed successfully
+2026-11-18 15:10:00 INFO  PaymentGateway - Health check passed: latency 28ms

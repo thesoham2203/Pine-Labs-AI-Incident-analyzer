@@ -1,0 +1,17 @@
+2026-11-18 17:00:00 INFO  SearchService - Elasticsearch node election complete, cluster healthy (3 nodes)
+2026-11-18 17:01:15 INFO  SearchService - Warm-up complete: 12,400 documents indexed in 2.1s
+2026-11-18 17:02:30 WARN  StorageService - Disk utilization at 78% on /var/data — monitoring threshold is 80%
+2026-11-18 17:04:00 ERROR SearchService - Query timeout after 5000ms for query_id=qry-9910 [index: products]
+2026-11-18 17:04:45 WARN  SearchService - Retrying query attempt 1 of 3 for query_id=qry-9910
+2026-11-18 17:05:30 ERROR SearchService - Query timeout after 5000ms for query_id=qry-9910 [retry 2]
+2026-11-18 17:06:10 INFO  SearchService - Query eventually succeeded on attempt 3 for query_id=qry-9910 (latency 7900ms)
+2026-11-18 17:08:00 ERROR InventoryService - Connection refused to warehouse database [db_host: warehouse-db-01.internal, port: 5432]
+2026-11-18 17:09:30 INFO  InventoryService - Retrying warehouse DB connection: attempt 1 of 3
+2026-11-18 17:10:00 ERROR InventoryService - Connection refused to warehouse database [db_host: warehouse-db-01.internal, port: 5432]
+2026-11-18 17:11:00 INFO  InventoryService - Retrying warehouse DB connection: attempt 2 of 3
+2026-11-18 17:12:00 ERROR InventoryService - Connection refused to warehouse database [db_host: warehouse-db-01.internal, port: 5432] — max retries exceeded
+2026-11-18 17:14:00 WARN  StorageService - Disk utilization at 81% on /var/data — threshold exceeded
+2026-11-18 17:15:00 INFO  SearchService - Cluster health OK; unrelated to inventory failures
+2026-11-18 17:16:30 ERROR InventoryService - Inventory check failed for SKU-77201: upstream DB unreachable
+2026-11-18 17:18:00 WARN  StorageService - Disk utilization at 83% on /var/data — trending upward
+2026-11-18 17:20:00 ERROR InventoryService - Inventory check failed for SKU-88412: upstream DB unreachable

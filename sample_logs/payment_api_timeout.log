@@ -1,0 +1,37 @@
+2026-11-18 10:10:05 INFO  PaymentGateway - Gateway health check passed: latency 24ms
+2026-11-18 10:11:15 INFO  OrderProcessor - Batch transaction sync completed successfully: 120 records processed
+2026-11-18 10:12:00 WARN  ConnectionPool - Active connections: 42/50, waiting: 2
+2026-11-18 10:12:45 WARN  ConnectionPool - Active connections: 46/50, waiting: 5, acquisition time: 1450ms
+2026-11-18 10:13:20 WARN  DatabaseService - Query latency threshold exceeded on table 'merchant_ledger': 3200ms
+2026-11-18 10:14:10 WARN  ConnectionPool - Active connections: 48/50, waiting: 8, acquisition time: 2800ms
+2026-11-18 10:15:02 ERROR DatabaseService - Connection to payment_db failed: Connection pool exhausted (50/50 active)
+2026-11-18 10:15:15 ERROR DatabaseService - Timed out waiting for connection from pool after 10000ms
+2026-11-18 10:15:32 ERROR PaymentService - API request to /v2/payments/process timed out after 30000ms [txn_id: TXN-8921104]
+2026-11-18 10:15:33 WARN  ConnectionPool - Active connections: 50/50, waiting: 18, pool status: CRITICAL_SATURATION
+2026-11-18 10:15:34 ERROR DatabaseService - Connection to payment_db failed: Too many connections
+2026-11-18 10:15:45 ERROR PaymentService - API request to /v2/payments/process timed out after 30000ms [txn_id: TXN-8921105]
+2026-11-18 10:16:01 ERROR CheckoutService - Upstream dependency failure: PaymentService returned HTTP 504 Gateway Timeout
+2026-11-18 10:16:12 ERROR PaymentService - API request to /v2/payments/process timed out after 30000ms [txn_id: TXN-8921109]
+2026-11-18 10:16:25 ERROR DatabaseService - Connection to payment_db failed: Connection acquisition timeout
+2026-11-18 10:16:40 ERROR PaymentService - API request to /v2/payments/process timed out after 30000ms [txn_id: TXN-8921112]
+2026-11-18 10:17:05 ERROR CheckoutService - Failed to finalize checkout for cart_id 88391: PaymentService unavailable
+2026-11-18 10:17:22 ERROR PaymentService - Transaction failed: java.sql.SQLTransientConnectionException: Connection is not available
+2026-11-18 10:17:35 ERROR PaymentService - API request to /v2/payments/process timed out after 30000ms [txn_id: TXN-8921118]
+2026-11-18 10:18:02 ERROR DatabaseService - Connection to payment_db failed: Too many connections
+2026-11-18 10:18:15 ERROR PaymentService - API request to /v2/payments/process timed out after 30000ms [txn_id: TXN-8921124]
+2026-11-18 10:18:30 ERROR CheckoutService - Upstream dependency failure: PaymentService returned HTTP 504 Gateway Timeout
+2026-11-18 10:18:45 ERROR PaymentService - API request to /v2/payments/refund timed out after 30000ms [txn_id: RFN-330192]
+2026-11-18 10:19:10 ERROR DatabaseService - Deadlock detected while executing transaction on settlement_queue
+2026-11-18 10:19:25 ERROR PaymentService - API request to /v2/payments/process timed out after 30000ms [txn_id: TXN-8921131]
+2026-11-18 10:20:00 ERROR PaymentService - Circuit breaker opened for DatabaseService: failure rate exceeded 65%
+2026-11-18 10:20:15 ERROR CheckoutService - Fallback triggered: Checkout unable to proceed due to payment circuit breaker
+2026-11-18 10:21:00 ERROR PaymentService - Fast-failing incoming request: circuit breaker OPEN [txn_id: TXN-8921142]
+2026-11-18 10:21:30 ERROR PaymentService - Fast-failing incoming request: circuit breaker OPEN [txn_id: TXN-8921147]
+2026-11-18 10:22:10 WARN  ConnectionPool - Active connections: 49/50, waiting: 25
+2026-11-18 10:23:05 ERROR DatabaseService - Connection to payment_db failed: Connection pool exhausted (50/50 active)
+2026-11-18 10:24:12 ERROR PaymentService - API request to /v2/payments/process timed out after 30000ms [txn_id: TXN-8921155]
+2026-11-18 10:25:00 ERROR CheckoutService - Upstream dependency failure: PaymentService returned HTTP 503 Service Unavailable
+2026-11-18 10:26:10 ERROR DatabaseService - Connection to payment_db failed: Too many connections
+2026-11-18 10:27:00 ERROR PaymentService - API request to /v2/payments/process timed out after 30000ms [txn_id: TXN-8921160]
+2026-11-18 10:28:15 ERROR PaymentService - API request to /v2/payments/process timed out after 30000ms [txn_id: TXN-8921168]
+2026-11-18 10:28:50 ERROR DatabaseService - Connection to payment_db failed: Connection pool exhausted (50/50 active)

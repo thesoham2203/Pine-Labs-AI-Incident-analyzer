@@ -1,0 +1,16 @@
+2026-11-18 12:00:10 INFO  AuthService - Token verification subsystem initialized
+2026-11-18 12:01:25 INFO  AuthService - OIDC public key cache refreshed successfully
+2026-11-18 12:03:00 WARN  AuthService - JWKS certificate rotation warning: Certificate expiring in 2 hours
+2026-11-18 12:04:15 WARN  AuthService - Key rotation failed: Unable to fetch new JWKS keyset from idp.internal
+2026-11-18 12:05:00 ERROR AuthService - Token validation failed: Signature verification failed for JWT issuer
+2026-11-18 12:05:22 ERROR AuthService - JWT decoding error: Invalid signature or expired key ID 'key_2026_v1'
+2026-11-18 12:06:05 ERROR AuthService - Rejecting request to /oauth/token: Invalid client signature
+2026-11-18 12:06:40 ERROR AuthService - Token validation failed: Signature verification failed for user session
+2026-11-18 12:07:15 ERROR AuthService - Rate limiter triggered: 429 Too Many Requests on /auth/verify
+2026-11-18 12:08:00 ERROR AuthService - Token validation failed: Signature verification failed for JWT issuer
+2026-11-18 12:08:45 ERROR AuthService - JWT decoding error: Invalid signature or expired key ID 'key_2026_v1'
+2026-11-18 12:09:30 ERROR AuthService - Rejecting request to /oauth/token: Authentication certificate mismatch
+2026-11-18 12:10:15 ERROR AuthService - Token validation failed: Signature verification failed for user session
+2026-11-18 12:11:00 ERROR AuthService - Authentication service returning HTTP 401 to API Gateway
+2026-11-18 12:12:05 ERROR AuthService - Token validation failed: Signature verification failed for JWT issuer
+2026-11-18 12:13:00 ERROR AuthService - OIDC token exchange failed: Remote JWKS endpoint returned HTTP 502
