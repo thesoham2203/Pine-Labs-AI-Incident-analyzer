@@ -57,26 +57,123 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ── Custom CSS ─────────────────────────────────────────────────────────────────
-st.markdown("""
-<style>
-/* Global typography */
-html, body, [class*="css"] { font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; }
+# ── Theme state ────────────────────────────────────────────────────────────────
+if "dark_mode" not in st.session_state:
+    st.session_state["dark_mode"] = False
+dark = st.session_state["dark_mode"]
 
-/* Header band */
-.hero-band {
+# ── Theme tokens ───────────────────────────────────────────────────────────────
+if dark:
+    T = {
+        "page_bg":        "#0f172a",
+        "surface":        "#1e293b",
+        "surface2":       "#293548",
+        "border":         "#334155",
+        "text":           "#f1f5f9",
+        "text_muted":     "#94a3b8",
+        "text_subtle":    "#64748b",
+        "sidebar_bg":     "#0d1526",
+        "sidebar_border": "#1e293b",
+        "sidebar_text":   "#94a3b8",
+        "sidebar_head":   "#e2e8f0",
+        "sidebar_hr":     "#1e293b",
+        "bar_track":      "#334155",
+        "insufficient_bg":  "#1a1500",
+        "insufficient_bd":  "#713f12",
+        "check_ro_bg":    "#0d2016",
+        "check_ro_bd":    "#14532d",
+        "check_td_bg":    "#1a0e00",
+        "check_td_bd":    "#7c2d12",
+        "badge_ro_bg":    "#14532d",
+        "badge_ro_fg":    "#86efac",
+        "badge_td_bg":    "#7c2d12",
+        "badge_td_fg":    "#fdba74",
+        "esc_bg":         "#1a0505",
+        "esc_bd":         "#7f1d1d",
+        "esc_title":      "#fca5a5",
+        "esc_body":       "#fecaca",
+        "finding_bg":     "#1e293b",
+        "finding_bd":     "#334155",
+        "finding_desc":   "#e2e8f0",
+        "finding_cite":   "#94a3b8",
+        "check_action":   "#e2e8f0",
+        "check_hyp":      "#94a3b8",
+        "kpi_bg":         "#1e293b",
+        "kpi_bd":         "#334155",
+        "kpi_value":      "#f1f5f9",
+        "kpi_label":      "#94a3b8",
+        "kpi_sub":        "#64748b",
+        "app_bg_inject":  "background-color:#0f172a !important;",
+    }
+else:
+    T = {
+        "page_bg":        "#f8fafc",
+        "surface":        "#ffffff",
+        "surface2":       "#f1f5f9",
+        "border":         "#e2e8f0",
+        "text":           "#0f172a",
+        "text_muted":     "#64748b",
+        "text_subtle":    "#94a3b8",
+        "sidebar_bg":     "#f8fafc",
+        "sidebar_border": "#e2e8f0",
+        "sidebar_text":   "#475569",
+        "sidebar_head":   "#0f172a",
+        "sidebar_hr":     "#e2e8f0",
+        "bar_track":      "#e2e8f0",
+        "insufficient_bg":  "#fffbeb",
+        "insufficient_bd":  "#fcd34d",
+        "check_ro_bg":    "#f0fdf4",
+        "check_ro_bd":    "#bbf7d0",
+        "check_td_bg":    "#fff7ed",
+        "check_td_bd":    "#fed7aa",
+        "badge_ro_bg":    "#dcfce7",
+        "badge_ro_fg":    "#15803d",
+        "badge_td_bg":    "#fed7aa",
+        "badge_td_fg":    "#c2410c",
+        "esc_bg":         "#fef2f2",
+        "esc_bd":         "#fca5a5",
+        "esc_title":      "#991b1b",
+        "esc_body":       "#7f1d1d",
+        "finding_bg":     "#fafafa",
+        "finding_bd":     "#e2e8f0",
+        "finding_desc":   "#1e293b",
+        "finding_cite":   "#64748b",
+        "check_action":   "#1e293b",
+        "check_hyp":      "#64748b",
+        "kpi_bg":         "#ffffff",
+        "kpi_bd":         "#e2e8f0",
+        "kpi_value":      "#0f172a",
+        "kpi_label":      "#64748b",
+        "kpi_sub":        "#94a3b8",
+        "app_bg_inject":  "",
+    }
+
+# ── Custom CSS ─────────────────────────────────────────────────────────────────
+st.markdown(f"""
+<style>
+html, body, [class*="css"] {{
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}}
+
+/* App background */
+.stApp, [data-testid="stAppViewContainer"] {{
+    {T["app_bg_inject"]}
+}}
+
+/* Hero band — always dark gradient */
+.hero-band {{
     background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #0f766e 100%);
     padding: 2rem 2.5rem 1.5rem;
     border-radius: 12px;
     margin-bottom: 1.5rem;
     color: white;
-}
-.hero-band .brand { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; opacity: 0.6; text-transform: uppercase; margin-bottom: 0.4rem; }
-.hero-band h1 { font-size: 2rem; font-weight: 800; margin: 0 0 0.3rem; color: #fff; }
-.hero-band .subtitle { font-size: 0.95rem; opacity: 0.75; margin: 0; }
+}}
+.hero-band .brand {{ font-size:0.75rem; font-weight:700; letter-spacing:0.15em; opacity:0.6; text-transform:uppercase; margin-bottom:0.4rem; }}
+.hero-band h1 {{ font-size:2rem; font-weight:800; margin:0 0 0.3rem; color:#fff; }}
+.hero-band .subtitle {{ font-size:0.95rem; opacity:0.75; margin:0; }}
 
 /* Severity banner */
-.severity-banner {
+.severity-banner {{
     padding: 1.25rem 1.5rem;
     border-radius: 10px;
     border-left: 5px solid;
@@ -84,125 +181,99 @@ html, body, [class*="css"] { font-family: 'Inter', 'Segoe UI', system-ui, sans-s
     display: flex;
     align-items: center;
     gap: 0.75rem;
-}
-.severity-banner .level-label { font-size: 1.5rem; font-weight: 800; }
-.severity-banner .level-sub { font-size: 0.8rem; opacity: 0.75; margin-top: 0.1rem; }
+}}
+.severity-banner .level-label {{ font-size:1.5rem; font-weight:800; }}
+.severity-banner .level-sub {{ font-size:0.8rem; opacity:0.75; margin-top:0.1rem; }}
 
 /* KPI cards */
-.kpi-card {
-    background: white;
-    border: 1px solid #e2e8f0;
+.kpi-card {{
+    background: {T["kpi_bg"]};
+    border: 1px solid {T["kpi_bd"]};
     border-radius: 10px;
     padding: 1rem 1.25rem;
     text-align: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-.kpi-card .kpi-value { font-size: 1.75rem; font-weight: 800; color: #0f172a; }
-.kpi-card .kpi-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #64748b; margin-top: 0.1rem; }
-.kpi-card .kpi-sub { font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem; }
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}}
+.kpi-card .kpi-value {{ font-size:1.75rem; font-weight:800; color:{T["kpi_value"]}; }}
+.kpi-card .kpi-label {{ font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:{T["kpi_label"]}; margin-top:0.1rem; }}
+.kpi-card .kpi-sub {{ font-size:0.75rem; color:{T["kpi_sub"]}; margin-top:0.25rem; }}
 
 /* Finding cards */
-.finding-card {
+.finding-card {{
     padding: 0.85rem 1rem;
     border-radius: 8px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid {T["finding_bd"]};
     margin-bottom: 0.6rem;
-    background: #fafafa;
-}
-.finding-card .conf-badge {
+    background: {T["finding_bg"]};
+}}
+.finding-card .conf-badge {{
     display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.15rem 0.5rem;
-    border-radius: 999px;
-    margin-bottom: 0.4rem;
-}
-.finding-card .description { font-size: 0.88rem; color: #1e293b; line-height: 1.4; }
-.finding-card .citation { font-size: 0.75rem; color: #64748b; margin-top: 0.3rem; font-family: monospace; }
+    font-size:0.65rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    padding:0.15rem 0.5rem; border-radius:999px; margin-bottom:0.4rem;
+}}
+.finding-card .description {{ font-size:0.88rem; color:{T["finding_desc"]}; line-height:1.4; }}
+.finding-card .citation {{ font-size:0.75rem; color:{T["finding_cite"]}; margin-top:0.3rem; font-family:monospace; }}
 
 /* Check cards */
-.check-card {
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-}
-.check-readonly { background: #f0fdf4; border: 1px solid #bbf7d0; }
-.check-team { background: #fff7ed; border: 1px solid #fed7aa; }
-.check-card .check-badge {
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    margin-top: 0.1rem;
-}
-.badge-ro { background: #dcfce7; color: #15803d; }
-.badge-td { background: #fed7aa; color: #c2410c; }
-.check-card .check-action { font-size: 0.85rem; color: #1e293b; font-weight: 500; }
-.check-card .check-hyp { font-size: 0.75rem; color: #64748b; margin-top: 0.2rem; }
+.check-card {{
+    padding:0.75rem 1rem; border-radius:8px; margin-bottom:0.5rem;
+    display:flex; gap:0.75rem; align-items:flex-start;
+}}
+.check-readonly {{ background:{T["check_ro_bg"]}; border:1px solid {T["check_ro_bd"]}; }}
+.check-team {{ background:{T["check_td_bg"]}; border:1px solid {T["check_td_bd"]}; }}
+.check-card .check-badge {{
+    font-size:0.6rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    white-space:nowrap; padding:0.2rem 0.5rem; border-radius:4px; margin-top:0.1rem;
+}}
+.badge-ro {{ background:{T["badge_ro_bg"]}; color:{T["badge_ro_fg"]}; }}
+.badge-td {{ background:{T["badge_td_bg"]}; color:{T["badge_td_fg"]}; }}
+.check-card .check-action {{ font-size:0.85rem; color:{T["check_action"]}; font-weight:500; }}
+.check-card .check-hyp {{ font-size:0.75rem; color:{T["check_hyp"]}; margin-top:0.2rem; }}
 
-/* Escalation alert */
-.escalation-box {
-    background: #fef2f2;
-    border: 1px solid #fca5a5;
-    border-left: 4px solid #dc2626;
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
-    margin-top: 1rem;
-}
-.escalation-box .esc-title { font-weight: 700; color: #991b1b; margin-bottom: 0.3rem; }
-.escalation-box .esc-body { font-size: 0.85rem; color: #7f1d1d; }
+/* Escalation box */
+.escalation-box {{
+    background:{T["esc_bg"]}; border:1px solid {T["esc_bd"]};
+    border-left:4px solid #dc2626; border-radius:8px;
+    padding:1rem 1.25rem; margin-top:1rem;
+}}
+.escalation-box .esc-title {{ font-weight:700; color:{T["esc_title"]}; margin-bottom:0.3rem; }}
+.escalation-box .esc-body {{ font-size:0.85rem; color:{T["esc_body"]}; }}
 
-/* Tab styling */
-div[data-testid="stTabs"] [role="tab"] {
-    font-weight: 600;
-    font-size: 0.85rem;
-    letter-spacing: 0.03em;
-}
-
-/* Upload area */
-div[data-testid="stFileUploader"] {
-    border-radius: 10px;
-}
-
-/* Sidebar */
-section[data-testid="stSidebar"] { background: #0f172a; }
-section[data-testid="stSidebar"] * { color: #cbd5e1 !important; }
-section[data-testid="stSidebar"] h1, section[data-testid="stSidebar"] h2,
-section[data-testid="stSidebar"] h3 { color: #f1f5f9 !important; }
-section[data-testid="stSidebar"] .stMarkdown a { color: #38bdf8 !important; }
-section[data-testid="stSidebar"] hr { border-color: #334155 !important; }
-
-/* Insufficient evidence alert */
-.insufficient-box {
-    background: #fffbeb;
-    border: 1px solid #fcd34d;
-    border-left: 4px solid #f59e0b;
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
-    margin: 0.5rem 0;
-}
+/* Insufficient evidence */
+.insufficient-box {{
+    background:{T["insufficient_bg"]}; border:1px solid {T["insufficient_bd"]};
+    border-left:4px solid #f59e0b; border-radius:8px;
+    padding:1rem 1.25rem; margin:0.5rem 0;
+}}
 
 /* Score bar */
-.score-bar-bg {
-    background: #e2e8f0;
-    border-radius: 999px;
-    height: 8px;
-    margin-top: 0.5rem;
-    overflow: hidden;
-}
-.score-bar-fill {
-    height: 8px;
-    border-radius: 999px;
-    transition: width 0.6s ease;
-}
+.score-bar-bg {{
+    background:{T["bar_track"]}; border-radius:999px;
+    height:8px; margin-top:0.5rem; overflow:hidden;
+}}
+.score-bar-fill {{ height:8px; border-radius:999px; transition:width 0.6s ease; }}
+
+/* Tabs */
+div[data-testid="stTabs"] [role="tab"] {{
+    font-weight:600; font-size:0.85rem; letter-spacing:0.03em;
+}}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {{
+    background:{T["sidebar_bg"]};
+    border-right:1px solid {T["sidebar_border"]};
+}}
+section[data-testid="stSidebar"] .stMarkdown p,
+section[data-testid="stSidebar"] .stMarkdown li,
+section[data-testid="stSidebar"] .stCaption {{
+    color:{T["sidebar_text"]} !important; font-size:0.82rem;
+}}
+section[data-testid="stSidebar"] h2 {{
+    color:{T["sidebar_head"]} !important; font-size:1rem !important;
+}}
+section[data-testid="stSidebar"] hr {{
+    border-color:{T["sidebar_hr"]} !important; margin:0.6rem 0;
+}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -210,41 +281,41 @@ section[data-testid="stSidebar"] hr { border-color: #334155 !important; }
 # ── Sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## 🛡️ Incident Analyzer")
-    st.markdown("**Pine Labs · Technology Operations**")
+    st.caption("Pine Labs · Technology Operations · v1.0")
+
+    # Dark Mode toggle switch
+    mode_label = "🌙 Dark Mode" if not dark else "☀️ Light Mode"
+    if st.button(mode_label, use_container_width=True):
+        st.session_state["dark_mode"] = not dark
+        st.rerun()
+
     st.markdown("---")
 
-    st.markdown("### How it works")
-    st.markdown("""
-1. **Parse** — normalize and number every log line
-2. **Detect** — regex patterns, error rates, affected paths  
-3. **Score** — rate-based severity with critical-path overrides  
-4. **AI analysis** — single Groq call for root cause & summary  
-5. **Verify** — citation check on every confirmed finding  
+    with st.expander("⚙️ How it works", expanded=False):
+        st.markdown("""
+1. **Parse** — normalize & number log lines
+2. **Detect** — regex patterns, rates, paths
+3. **Score** — rate-based severity + overrides
+4. **AI** — single Groq call for root cause
+5. **Verify** — citation check on findings
 6. **Report** — downloadable incident brief
-    """)
-    st.markdown("---")
+        """)
 
-    st.markdown("### Severity levels")
-    for level, cfg in SEVERITY_CONFIG.items():
-        if level != "None":
-            st.markdown(f"{cfg['emoji']} **{level}**")
+    with st.expander("🏷️ Legend", expanded=True):
+        st.markdown("""
+**Severity**
+🔴 Critical · 🟠 High · 🟡 Medium · 🟢 Low · ✅ None
+
+**Confidence**
+✅ Confirmed · 🔶 Likely · ❓ Possible · ⚠️ Unverified
+
+**Actions**
+🟢 Read-only (safe now)
+🟠 Team decision (needs approval)
+        """)
 
     st.markdown("---")
-    st.markdown("### Confidence tags")
-    st.markdown("""
-✅ **Confirmed** — cited in log  
-🔶 **Likely** — inferred from pattern  
-❓ **Possible** — speculative  
-⚠️ **Unverified** — citation failed  
-    """)
-    st.markdown("---")
-    st.markdown("### Action types")
-    st.markdown("""
-🟢 **Read-only** — safe to run now  
-🟠 **Team decision** — requires owning team approval  
-    """)
-    st.markdown("---")
-    st.caption("v1.0 · Sample data only · No production logs")
+    st.caption("Sample data only · No production logs")
 
 
 # ── Hero header ────────────────────────────────────────────────────────────────
