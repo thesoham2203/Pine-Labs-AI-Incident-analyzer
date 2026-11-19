@@ -1,6 +1,9 @@
 # 🛡️ AI-Powered Incident Analyzer
 
-> **Pine Labs · Technology Operations Internship — Practical AI Assignment 1**
+> **Pine Labs · Technology Operations Internship — Practical AI Assignment 1**  
+> 📺 **Demo Walkthrough:** [https://youtu.be/Do0RXfE05CQ](https://youtu.be/Do0RXfE05CQ)
+
+[![Watch Demo Video](https://img.shields.io/badge/YouTube-Watch%20Demo%20Video-red?style=for-the-badge&logo=youtube)](https://youtu.be/Do0RXfE05CQ)
 
 A Streamlit prototype that turns raw application logs into a structured, evidence-led incident brief. It parses logs, detects error patterns, scores severity deterministically, optionally calls Groq for AI root-cause analysis, verifies every AI claim against real log lines, and produces a shareable Markdown report.
 
