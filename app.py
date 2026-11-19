@@ -285,7 +285,7 @@ with st.sidebar:
 
     # Dark Mode toggle switch
     mode_label = "🌙 Dark Mode" if not dark else "☀️ Light Mode"
-    if st.button(mode_label, use_container_width=True):
+    if st.button(mode_label, width="stretch"):
         st.session_state["dark_mode"] = not dark
         st.rerun()
 
@@ -335,13 +335,13 @@ with st.container():
 
     col_src1, col_src2, col_src3 = st.columns(3)
     with col_src1:
-        btn_sample = st.button("📂 Use Sample Scenario", use_container_width=True,
+        btn_sample = st.button("📂 Use Sample Scenario", width="stretch",
                                type="secondary" if st.session_state.get("src") != "sample" else "primary")
     with col_src2:
-        btn_upload = st.button("⬆️ Upload File", use_container_width=True,
+        btn_upload = st.button("⬆️ Upload File", width="stretch",
                                type="secondary" if st.session_state.get("src") != "upload" else "primary")
     with col_src3:
-        btn_paste = st.button("📝 Paste Log Text", use_container_width=True,
+        btn_paste = st.button("📝 Paste Log Text", width="stretch",
                               type="secondary" if st.session_state.get("src") != "paste" else "primary")
 
     if btn_sample:
@@ -405,7 +405,7 @@ with st.container():
         )
 
     st.markdown("<div style='margin-top:0.5rem'></div>", unsafe_allow_html=True)
-    analyze_btn = st.button("🔍 Analyze Incident", type="primary", use_container_width=True)
+    analyze_btn = st.button("🔍 Analyze Incident", type="primary", width="stretch")
 
 
 # ── Cache invalidation ─────────────────────────────────────────────────────────
@@ -531,13 +531,13 @@ if "result" in st.session_state:
             if analysis["pattern_summary"]:
                 pattern_df = pd.DataFrame(analysis["pattern_summary"])
                 pattern_df.columns = ["Pattern", "Count", "Rate /min", "First Seen", "Last Seen"]
-                st.dataframe(pattern_df, hide_index=True, use_container_width=True)
+                st.dataframe(pattern_df, hide_index=True, width="stretch")
                 # Mini bar chart of pattern counts
                 chart_df = pd.DataFrame({
                     "Pattern": [r["Pattern"] for r in pattern_df.to_dict("records")],
                     "Count": [r["Count"] for r in pattern_df.to_dict("records")],
                 }).set_index("Pattern")
-                st.bar_chart(chart_df, use_container_width=True, height=200)
+                st.bar_chart(chart_df, width="stretch", height=200)
             else:
                 st.markdown("""
                 <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:1rem;text-align:center;color:#15803d;">
@@ -640,7 +640,7 @@ if "result" in st.session_state:
                         .rename("Events per minute")
                     )
                     if not chart_data.empty:
-                        st.bar_chart(chart_data, use_container_width=True, height=220)
+                        st.bar_chart(chart_data, width="stretch", height=220)
 
             st.markdown("#### 🗒️ Log Evidence (Warnings & Errors)")
             display_df = timeline_df.copy()
@@ -659,7 +659,7 @@ if "result" in st.session_state:
             st.dataframe(
                 display_df[["line_number", "timestamp", "level", "source", "message"]],
                 hide_index=True,
-                use_container_width=True,
+                width="stretch",
                 column_config={
                     "line_number": st.column_config.NumberColumn("Line", width="small"),
                     "timestamp": st.column_config.TextColumn("Timestamp", width="medium"),
@@ -689,11 +689,11 @@ if "result" in st.session_state:
                 data=report,
                 file_name=f"incident_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md",
                 mime="text/markdown",
-                use_container_width=True,
+                width="stretch",
                 type="primary",
             )
         with c2:
-            if st.button("📋 Show Markdown Source", use_container_width=True):
+            if st.button("📋 Show Markdown Source", width="stretch"):
                 st.session_state["show_md_src"] = not st.session_state.get("show_md_src", False)
 
         if st.session_state.get("show_md_src"):

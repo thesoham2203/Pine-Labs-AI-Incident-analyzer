@@ -80,7 +80,7 @@ Raw Log Input
          ├──────────────────────────────────────┐
          ▼                                      ▼
 ┌─────────────────┐                   ┌──────────────────┐
-│ Severity        │                   │ Groq AI Analyzer  │  (optional)
+│ Severity        │                   │ Groq AI Analyzer  │
 │ Classifier      │                   │ Single JSON call  │
 │ (rate-based +   │                   └────────┬─────────┘
 │  override rules)│                            │
@@ -100,7 +100,7 @@ Raw Log Input
 ### Two-pass design
 
 1. **Deterministic pass** — fast, explainable, always runs. Produces error rates, pattern counts, timeline, and a severity score.
-2. **AI pass** — optional Groq call. Receives pre-parsed structured data (not raw log noise) for better accuracy, lower token cost, and reliable line citations.
+2. **AI pass** —  Groq call. Receives pre-parsed structured data (not raw log noise) for better accuracy, lower token cost, and reliable line citations.
 
 ---
 
